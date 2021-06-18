@@ -29,7 +29,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ReducedUserDto createUse(@RequestBody CreateUserDto createUserDto) {
+    public ReducedUserDto createUser(@RequestBody CreateUserDto createUserDto) {
         return userService.createUser(createUserDto);
+    }
+
+    @PostMapping("/edit/{userId}")
+    public ReducedUserDto editUser(@RequestBody ReducedUserDto reducedUserDto, @PathVariable String userId) {
+        return userService.editUser(reducedUserDto,userId);
     }
 }
