@@ -14,4 +14,6 @@ public interface UserService {
 
     ReducedUserDto editUser(ReducedUserDto updatedUser, String userId);
 
+    ReducedUserDto findByUsername(String username);
+
 }
