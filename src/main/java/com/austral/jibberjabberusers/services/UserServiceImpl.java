@@ -45,4 +45,16 @@ public class UserServiceImpl implements UserService{
         List<AppUser> appUsers = userRepository.findAll();
         return UserListingDto.fromUsersList(appUsers);
     }
+
+    @Override
+    public ReducedUserDto editUser(ReducedUserDto updatedUser, String userId) {
+        AppUser appUser = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        appUser.setEmail(updatedUser.getEmail());
+        appUser.setFirstName(updatedUser.getFirstName());
+        appUser.setLastName(updatedUser.getLastName());
+        appUser.setUsername(updatedUser.getUsername());
+        AppUser savedUser = userRepository.save(appUser);
+
+        return ReducedUserDto.fromUser(appUser);
+    }
 }
